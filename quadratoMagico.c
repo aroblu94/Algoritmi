@@ -26,10 +26,14 @@ int main () {
          * il risultato non cambia ma non ho capito l'errore
          */
         else {
-            if ((rows_pos + 1) > (rows - 1))
-                rows_pos = 0;
+            if ((cols_pos -1) < 0)
+                cols_pos = cols - 1;
             else
-                rows_pos++;
+                cols_pos--;
+            if ((rows_pos + 1) > (rows - 1))
+                rows_pos = 1;
+            else
+                rows_pos += 2;
             m[rows_pos][cols_pos] = count;
         }
 
@@ -45,7 +49,7 @@ int main () {
 
     for (y = 0; y < rows; y++) { // Stampo la matrice riempita
         for (x = 0; x < cols; x++) {
-            printf("%d ", m[y][x]);
+            printf("%2d ", m[y][x]);
         }
         printf("\n");
     }
