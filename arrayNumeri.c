@@ -1,38 +1,28 @@
 // Esercizio 1.3
 #include <stdio.h>
+#define LUNG 50
 
-int create() {
+void create(int arr[]) {
 	srand(time(NULL));
-	int i, *point;
-	for (i = 0; i < 50; i++) {
-		arr[i] = rand() % 1000;
-	}
-	*point = arr;
-	return *point;
-}
-
-void print(int *p) {
-	arr[] = *p;
 	int i;
-	for (i = 0; i < 50; i++) {
-		printf("%d", arr[i]);
+	for (i = 0; i < LUNG; i++) {
+		arr[i] = rand()%100;
+		printf("%d ", arr[i]);
 	}
 	printf("\n");
 }
 
-void sum() {
-	arr[] = *point;
-	int i, somma = 0;
-	for(i = 0; i < 50; i++) {
-		somma = somma + arr[i];
+int sum(int arr[]) {
+	int i, sum = 0;
+	for (i = 0; i < LUNG; i++) {
+		sum = sum + arr[i];
 	}
-	printf("%d", somma);
+	return sum;
 }
 
 int main () {
-	int arr[50];
-	print(create());
-	sum();
-	printf("\n");
+	int arr[LUNG];
+	create(arr);
+	printf("%d\n", sum(arr));
 	return 0;
 }
