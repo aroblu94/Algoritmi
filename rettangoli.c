@@ -25,10 +25,8 @@ int isDentro (Punto *p, Rettangolo *r);
 // Main
 int main () {
 	float x, y;
-	Punto a, c, p, q, *pointToP;
-	Rettangolo r, *pointToR;
-	pointToR = &r;
-	pointToP = &p;
+	Punto a, c, p, q;
+	Rettangolo r;
 	printf("Inserisci le coordinate del punto A (separate da uno spazio): ");	// Creo il punto A
 	scanf("%f%f", &x, &y);
 	a.x = x;
@@ -38,23 +36,23 @@ int main () {
 	c.x = x;
 	c.y = y;
 	r = creaRett(a, c);	// Creo il rettangolo coi punti dati
-	stampaRett(pointToR);	//Stampo il rettangolo
-	printf("Area: %f\n", areaRett(pointToR));
-	q = centroRett(pointToR);
+	stampaRett(&r);	//Stampo il rettangolo
+	printf("Area: %f\n", areaRett(&r));
+	q = centroRett(&r);
 	printf("Centro rettangolo: C(%f,%f)\n", q.x, q.y);
 	printf("\nInserisci le coordinate del punto P (separate da uno spazio): ");	// Creo il punto P
 	scanf("%f%f", &x, &y);
 	p.x = x;
 	p.y = y;
-	if(isDentro(pointToP, pointToR) == 1)
+	if(isDentro(&p, &r) == 1)
 		printf("Il punto P(%f,%f) è INTERNO al rettangolo\n", p.x, p.y);
 	else
 		printf("Il punto P(%f,%f) è ESTERNO al rettangolo\n", p.x, p.y);
 	printf("\nDi quanto vuoi traslare il rettangolo? (x e y) ");
 	scanf("%f%f", &x, &y);
-	trasla(pointToR, x, y);
+	trasla(&r, x, y);
 	printf("==> ");
-	stampaRett(pointToR);
+	stampaRett(&r);
 	return 0;
 }
 
