@@ -19,9 +19,8 @@ void smallest_largest(char *s[], int n, char *smallest, char *largest ) {
 
 // Main
 int main (int argc, char **argv) {
-	int lun = argc - 1;
 	char *smallest, *largest;
 	smallest = largest = argv[1];
-	smallest_largest(argv, lun, smallest, largest);
+	smallest_largest(argv, argc - 1, smallest, largest);
 	return 0;
 }
