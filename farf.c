@@ -6,7 +6,9 @@ int main (int argc, char **argv) {
 	char *word;
 	word = argv[1];
 	while(*word != '\0') {
-		if(*word == 'a')
+		inf(*word == 'a' || *word == 'e' || *word == 'i' || *word == 'o' || *word == 'u')
+			printf("%cf%c", *word, *word);
+		/*if(*word == 'a')
 			printf("afa");
 		else if(*word == 'e')
 			printf("efe");
@@ -15,7 +17,7 @@ int main (int argc, char **argv) {
 		else if(*word == 'o')
 			printf("ofo");
 		else if(*word == 'u')
-			printf("ufu");
+			printf("ufu");*/
 		else
 			printf("%c", *word);
 		word++;
