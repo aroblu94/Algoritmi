@@ -131,8 +131,10 @@ void destroy(element **h) {
 void printInv(element *h) {
 	if(h->next == NULL)
 		printf("%d ", h->info);
-	else
+	else {
 		printInv(h->next);
+		printf("%d ", h->info);
+	}
 }
 
 
