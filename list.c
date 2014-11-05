@@ -13,6 +13,7 @@ void printList(element *h);
 int isMember(int n, element *h);
 element *delete(int n, element *h);
 void destroy(element **h);
+void printInv(element *h);
 
 int main (){
 	element *head = NULL;
@@ -43,7 +44,9 @@ int main (){
 				printList(head);
 			break;
 			case 'o':
-
+				printf("[ ");
+				printInv(head);
+				printf("]\n");
 			break;
 			case 'd':
 				destroy(&head);
@@ -125,7 +128,12 @@ void destroy(element **h) {
 	printf("Lista eliminata.\n");
 }
 
-
+void printInv(element *h) {
+	if(h->next == NULL)
+		printf("%d ", h->info);
+	else
+		printInv(h->next);
+}
 
 
 
