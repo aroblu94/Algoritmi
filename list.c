@@ -12,6 +12,7 @@ element *insert(int n, element *h);
 void printList(element *h);
 int isMember(int n, element *h);
 element *delete(int n, element *h);
+void destroy(element **h);
 
 int main (){
 	element *head = NULL;
@@ -26,14 +27,17 @@ int main (){
 					count++;
 			break;
 			case '-':
-
+				scanf("%d", &n);
+				head = delete(n, head);
+				if(head != NULL)
+					count--;
 			break;
 			case '?':
 				scanf("%d", &n);
 				printf("%d\n", isMember(n, head));
 			break;
 			case 'c':
-				printf("Numero elementi: %d\n", count);
+				printf("Numero elementi della lista: %d\n", count);
 			break;
 			case 'p':
 				printList(head);
@@ -42,7 +46,7 @@ int main (){
 
 			break;
 			case 'd':
-
+				destroy(&head);
 			break;
 		}
 		scanf("%c", &tmp);
@@ -55,11 +59,11 @@ element *insert(int n, element *h) {
 		element *new = malloc(sizeof(element));
 		new->info = n;
 		new->next = h;
-		printf("Aggiunto\n");
+		printf("Elemento aggiunto.\n");
 		return new;
 	}
 	else {
-		printf("Già presente, non aggiunto\n");
+		printf("Elemento già presente, nessuna azione.\n");
 		return h;
 	}
 }
@@ -85,9 +89,41 @@ int isMember(int n, element *h) {
 	return bool;
 }
 
-/*element *delete(int n, element *h) {
+element *delete(int n, element *h) {
+	element *curr = h;
+	element *prev = h;
+	if(isMember(n, h) == 1) {
+		for(curr = h; curr != NULL; curr = curr->next) {
+			if(curr->info == n) {
+				if(curr == h) {
+					h = curr->next;
+					free(curr);
+				}
+				else if(curr->next == NULL) {
+					prev->next = NULL;
+					free(curr);
+				}
+				else {
+					prev->next = curr->next;
+					free(curr);
+				}
+				printf("Eliminato %d.\n", n);
+			}
+			prev = curr;
+		}
+	}
+	else
+		printf("Elemento non presente nella lista, nessuna azione.\n");
+	return h;
+}
 
-}*/
+void destroy(element **h) {
+	element *p;
+	for(p = *h; p != NULL; *h = p) {
+		p = delete(p->info, p);
+	}
+	printf("Lista eliminata.\n");
+}
 
 
 
