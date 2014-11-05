@@ -6,13 +6,13 @@
 char **newBook(int n);
 void book(int k, char *name, char **m, int len);
 void cancel(int k, char **m);
-void move(int from, int to);
+void move(int from, int to, char **m);
 void printBook(int n, char **m);
 
 // Main
 int main () {
 	int num = 0;	// numero posti
-	int n;
+	int n, n1;
 	int count;
 	char **b, name[20], c;
 	scanf(" %c", &c);
@@ -36,13 +36,12 @@ int main () {
 			book(n, name, b, count);
 		break;
 		case '-': // - k --> cancel(k)
-			printf("- selected\n");
 			scanf("%d", &n);
-			printf("%d\n", n);
 			cancel(n, b);
 		break;
 		case 'm': // m from to ---> move from to
-		// ..
+			scanf("%d%d", &n, &n1);
+			move(n, n1, b);
 		break;
 		case 'p': // p ---> printBook()
 			printBook(num, b);
@@ -104,8 +103,24 @@ void cancel(int n, char **m) {
 		printf("Il posto selezionato è già libero.\n");
 }
 
-
-
+void move(int from, int to, char **m) {
+	if(m[from][0] != '\0') {
+		if(m[to][0] == '\0') {
+			int i = 0;
+			do {
+				m[to][i] = m[from][i];
+				m[from][i] = '\0';
+				i++;
+			}
+			while(m[from][i] != '\0');
+			printf("%d ---> %d\n", from, to);
+		}
+		else
+			printf("Il posto %d è già occupato.\n", to);
+	}
+	else
+		printf("Il posto %d non è prenotato.\n", from);
+}
 
 
 
