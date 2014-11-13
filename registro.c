@@ -58,7 +58,7 @@ char **newBook(int n) {
 	int r;
 	m = malloc (n * sizeof(char *));
 	for (r = 0; r < n ; r++) {
-		*(m + r) = malloc(100);
+		*(m + r) = malloc(sizeof(char));
 	}
 	printf("Book creato\n");
 	return m;
@@ -82,6 +82,7 @@ void book(int k, char *name, char **m, int len) {
 		int r;
 		for (r = 0; name[r] != '\0'; r++) {
 			m[k][r] = name[r];
+			m[k] = realloc(m[k], sizeof(char));
 		}
 		printf("Aggiunto %s al posto %d\n", name, k);
 	}
@@ -90,13 +91,14 @@ void book(int k, char *name, char **m, int len) {
 }
 
 void cancel(int n, char **m) {
-	int i = 0;
+	/*int i = 0;*/
 	if(m[n][0] != '\0') {
-		do {
+		/*do {
 			m[n][i] = '\0';
 			i++;
 		}
-		while(m[n][i] != '\0');
+		while(m[n][i] != '\0');*/
+		free(m[n]);
 		printf("Posto %d liberato.\n", n);
 	}
 	else
